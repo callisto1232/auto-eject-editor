@@ -1,9 +1,5 @@
 import sys
 
-INPUT_FILE = "test_cube.gcode"
-EJECT_FILE = "auto_eject.gcode"
-OUTPUT_FILE = "output.gcode"
-
 def build_custom_print(main_gcode_path, template_path):
     output_path = "ready_to_print.gcode"
     
@@ -28,7 +24,7 @@ def build_custom_print(main_gcode_path, template_path):
         if capture_started:
             # We stop adding lines when the slicer starts its own "End G-code"
             # Most slicers use M140 S0 or M104 S0 to turn off heaters at the end.
-            if "M140 S0" in line or "M104 S0" in line:
+            if "M84" in line:
                 break
             final_gcode.append(line)
 
